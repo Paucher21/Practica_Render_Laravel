@@ -1,0 +1,34 @@
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_dev_app
+    ports:
+      - "8000:80"
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_KEY: "base64:LgcfenEWb4dDYpfA6VjGsAlP7kj6q65IkgKHf/X7nPg=" 
+      DB_CONNECTION: pgsql
+      DB_HOST: db       
+      DB_PORT: 5432
+      DB_DATABASE: laravel_dev
+      DB_USERNAME: user
+      DB_PASSWORD: 1234
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: laravel_dev_db
+    environment:
+      POSTGRES_DB: laravel_dev
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - pgdata_dev:/var/lib/postgresql/data
+
+volumes:
+  pgdata_dev:
