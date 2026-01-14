@@ -19,8 +19,8 @@ En este entorno, **PHP/Laravel** se ejecuta en tu máquina host, mientras que **
 
 ### Pasos para arrancar:
 1. Copia el archivo de entorno:
-   ```bash
-   cp .env.example .env
+cp .env.example .env
+
 Configura las variables de base de datos en el .env para conectar con Docker:
 
 Ini, TOML
@@ -31,33 +31,28 @@ DB_PORT=5432
 DB_DATABASE=laravel
 DB_USERNAME=user
 DB_PASSWORD=1234
+
 Levanta la base de datos:
-
-Bash
-
 docker-compose -f docker-compose.local.yml up -d
+
 Instala dependencias y corre migraciones:
-
-Bash
-
 composer install
 php artisan migrate
+
 Inicia el servidor:
-
-Bash
-
 php artisan serve
+
 Visita: http://localhost:8000
 
 ## 2. Entorno DEV (Full Docker)
 En este entorno, Toda la aplicación (Laravel + PostgreSQL) corre dentro de contenedores. Incluye automatización de migraciones y seeders al arrancar.
 
 Pasos para arrancar:
+
 Ejecuta el comando de construcción y arranque:
 
-Bash
-
 docker-compose -f docker-compose.dev.yml up --build
+
 Espera a que termine el proceso. El sistema automáticamente:
 
 Esperará a que la BD esté lista.
